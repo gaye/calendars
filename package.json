@@ -4,11 +4,10 @@
   "author": "Gareth Aye [:gaye] <gaye@mozilla.com>",
   "description": "caldav/ical calendar web app backend",
   "license": "MPL-2.0",
-  "main": "./lib/index",
 
   "dependencies": {
-    "dav": "1.1.1",
-    "jsical": "0.0.4"
+    "dav": "1.2.0",
+    "jsical": "0.0.5"
   },
 
   "devDependencies": {
