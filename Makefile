@@ -1,19 +1,32 @@
-.PHONY: default
-default: calendars.js calendars_worker.js
+JS := $(shell find lib/ -name "*.js")
 
-.PHONY: node_modules
-node_modules:
-	npm install
+default: calendars.js
 
-calendars.js: node_modules
+clean:
+	rm -f calendars.js
+
+calendars.js: $(JS) node_modules
 	./node_modules/.bin/browserify \
-		--ignore-missing \
 		--standalone calendars \
 		--transform brfs \
+		--transform workerify \
 		./lib/index.js > ./calendars.js
 
-calendars_worker.js: node_modules
-	./node_modules/.bin/browserify \
-		--ignore-missing \
-		--transform brfs \
-		./lib/worker/index.js > ./calendars_worker.js
+.PHONY: ci
+ci: lint coverage
+
+.PHONY: coverage
+coverage: test
+	find coverage/ -name "*.info" -exec cat {} \; | ./node_modules/.bin/coveralls
+	rm -rf ./coverage
+
+.PHONY: lint
+lint:
+	./node_modules/.bin/jshint lib/ test/
+
+node_modules: package.json
+	npm install
+
+.PHONY: test
+test: calendars.js node_modules
+	./node_modules/karma/bin/karma start

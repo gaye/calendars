@@ -1,0 +1,9 @@
+.gitignore
+.jshintrc
+.travis.yml
+Makefile
+karma.conf.js
+
+/coverage
+/node_modules
+/test
