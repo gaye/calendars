@@ -1,6 +1,6 @@
 JS := $(shell find lib/ -name "*.js")
 
-default: calendars.js
+default: calendars.zip
 
 clean:
 	rm -f calendars.js
@@ -11,6 +11,9 @@ calendars.js: $(JS) node_modules
 		--transform brfs \
 		--transform workerify \
 		./lib/index.js > ./calendars.js
+
+calendars.zip: calendars.js
+	zip calendars calendars.js
 
 .PHONY: ci
 ci: lint coverage

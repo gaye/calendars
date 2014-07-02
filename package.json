@@ -6,6 +6,11 @@
   "license": "MPL-2.0",
   "main": "./lib/index",
 
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gaye/calendars"
+  },
+
   "dependencies": {
     "dav": "1.5.5",
     "jsical": "0.0.4"

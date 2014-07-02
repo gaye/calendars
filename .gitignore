@@ -1,3 +1,5 @@
+*.zip
+
 /calendars.js
 
 /coverage
