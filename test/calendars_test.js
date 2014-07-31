@@ -1,4 +1,4 @@
-/* global calendars, chai */
+/* global calendars */
 'use strict';
 
 describe('calendars', function() {
